@@ -13,16 +13,7 @@ impl Config {
             return Err("Not enough arguments");
         }
 
-        let mut case_insensitive = false; // 默认不忽略大小写
-
-        if args.len() == 4{
-            if args[3] == "1" {
-                case_insensitive = true;
-            }
-            else {
-                case_insensitive = false;
-            }
-        }
+        let case_insensitive = if args.len() < 4 { false } else { args[3] == "1" }; // 默认不忽略大小写
 
         let query = args[1].clone(); // 第一个参数，通常是要搜索的字符串
         let file_path = args[2].clone(); // 第二个参数，通常是要搜索的文件路径
